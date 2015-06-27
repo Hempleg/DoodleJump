@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *platform3;
 @property (weak, nonatomic) IBOutlet UIImageView *platform4;
 @property (weak, nonatomic) IBOutlet UIImageView *platform5;
+@property (nonatomic) int score;
 
 
 @property (strong, nonatomic) NSTimer *movingTimer;
@@ -45,6 +46,12 @@
 
 @property (nonatomic) float platformFallSpeed;
 
+@property (nonatomic) BOOL platform1Used;
+@property (nonatomic) BOOL platform2Used;
+@property (nonatomic) BOOL platform3Used;
+@property (nonatomic) BOOL platform4Used;
+@property (nonatomic) BOOL platform5Used;
+
 
 @end
 
@@ -55,6 +62,12 @@
 - (void) gameOver {
     self.ball.hidden = YES;
     self.gameOverButton.hidden = NO;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int highScore = [[defaults valueForKey:@"HighScore"] intValue];
+    if (self.score > highScore) {
+        [defaults setValue:[NSNumber numberWithInt:self.score] forKey:@"HighScore"];
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -75,11 +88,17 @@
     self.ballRight = NO;
 }
 
-- (void) newPositionForPlatform: (UIImageView*) platform {
+- (BOOL) newPositionForPlatform: (UIImageView*) platform {
     if (platform.center.y - platform.bounds.size.height / 2 > self.view.bounds.size.height) {
         int randomXPosition = arc4random() % (int)(self.view.bounds.size.width - platform.bounds.size.width) + platform.bounds.size.width / 2;
         platform.center = CGPointMake(randomXPosition, -platform.bounds.size.height / 2);
+        return YES;
     }
+    return NO;
+}
+
+-(BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void) platformMoving {
@@ -117,20 +136,34 @@
         self.platformFallSpeed = 0;
     }
     
-    [self newPositionForPlatform:self.platform1];
-    [self newPositionForPlatform:self.platform2];
-    [self newPositionForPlatform:self.platform3];
-    [self newPositionForPlatform:self.platform4];
-    [self newPositionForPlatform:self.platform5];
+    if ([self newPositionForPlatform:self.platform1]) {
+        self.platform1Used = NO;
+    }
+    if ([self newPositionForPlatform:self.platform2]) {
+        self.platform2Used = NO;
+    }
+    if ([self newPositionForPlatform:self.platform3]) {
+        self.platform3Used = NO;
+    }
+    if ([self newPositionForPlatform:self.platform4]) {
+        self.platform4Used = NO;
+    }
+    if ([self newPositionForPlatform:self.platform5]) {
+        self.platform5Used = NO;
+    }
     
 }
 
 - (void) bounce {
     self.ball.animationImages = @[[UIImage imageNamed:@"Ball2.png"],
+                                  [UIImage imageNamed:@"Ball2point2.png"],
+                                  [UIImage imageNamed:@"Ball2point5.png"],
                                   [UIImage imageNamed:@"Ball3.png"],
+                                  [UIImage imageNamed:@"Ball2point5.png"],
+                                  [UIImage imageNamed:@"Ball2point2.png"],
                                   [UIImage imageNamed:@"Ball2.png"],
                                   [UIImage imageNamed:@"Ball1.png"]];
-    [self.ball setAnimationDuration:0.3];
+    [self.ball setAnimationDuration:0.2];
     [self.ball setAnimationRepeatCount:1];
     [self.ball startAnimating];
     
@@ -182,23 +215,49 @@
     if (CGRectIntersectsRect(self.ball.frame, self.platform1.frame) && self.upSpeed < -2) {
         [self bounce];
         [self platformFalling];
+        if (!self.platform1Used) {
+            self.platform1Used = YES;
+            self.score++;
+            [self updateScoreLabel];
+        }
     }
     if (CGRectIntersectsRect(self.ball.frame, self.platform2.frame) && self.upSpeed < -2) {
         [self bounce];
         [self platformFalling];
+        if (!self.platform2Used) {
+            self.platform2Used = YES;
+            self.score++;
+            [self updateScoreLabel];
+        }
     }
     if (CGRectIntersectsRect(self.ball.frame, self.platform3.frame) && self.upSpeed < -2) {
         [self bounce];
         [self platformFalling];
+        if (!self.platform3Used) {
+            self.platform3Used = YES;
+            self.score++;
+            [self updateScoreLabel];
+        }
     }
     if (CGRectIntersectsRect(self.ball.frame, self.platform4.frame) && self.upSpeed < -2) {
         [self bounce];
         [self platformFalling];
+        if (!self.platform4Used) {
+            self.platform4Used = YES;
+            self.score++;
+            [self updateScoreLabel];
+        }
     }
     if (CGRectIntersectsRect(self.ball.frame, self.platform5.frame) && self.upSpeed < -2) {
         [self bounce];
         [self platformFalling];
+        if (!self.platform5Used) {
+            self.platform5Used = YES;
+            self.score++;
+            [self updateScoreLabel];
+        }
     }
+    
     self.upSpeed -= BALL_SPEED_INC;
     
     if (self.ballLeft) {
@@ -234,6 +293,10 @@
     }
 }
 
+- (void) updateScoreLabel {
+    self.scoreLabel.text = [NSString stringWithFormat:@" %i", self.score];
+}
+
 - (IBAction)startButtonPressed:(id)sender {
     self.startButton.hidden = YES;
     self.ball.hidden = NO;
@@ -241,6 +304,9 @@
     self.platform3.hidden = NO;
     self.platform4.hidden = NO;
     self.platform5.hidden = NO;
+    
+    self.score = 0;
+    [self updateScoreLabel];
     
     self.upSpeed = BALL_INITIAL_UPSPEED;
     self.platform3SideSpeed = PLATFORM3_SIDE_SPEED;

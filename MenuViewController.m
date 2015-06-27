@@ -20,6 +20,10 @@
     [self updateLabel];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 - (void) updateLabel {
     int highScore = [[[NSUserDefaults standardUserDefaults] valueForKey:@"HighScore"] intValue];
     
