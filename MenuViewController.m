@@ -10,13 +10,26 @@
 
 @interface MenuViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *highScoreLabel;
 @end
 
 @implementation MenuViewController
 
+- (IBAction)resetScoreButton:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:0 forKey:@"HighScore"];
+    [self updateLabel];
+}
+
+- (void) updateLabel {
+    int highScore = [[[NSUserDefaults standardUserDefaults] valueForKey:@"HighScore"] intValue];
+    
+    self.highScoreLabel.text = [NSString stringWithFormat:@"High score: %i", highScore];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self updateLabel];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -12,6 +12,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doodle Jump" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pOg-gt-vqC">
+                                <rect key="frame" x="-4" y="189" width="328" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="47"/>
+                                <color key="textColor" red="0.40784313725490196" green="0.86274509803921573" blue="0.29019607843137257" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.33939689042417742" green="1" blue="0.8402163964153353" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cv7-Kh-JaN">
                                 <rect key="frame" x="0.0" y="248" width="320" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -22,16 +29,32 @@
                                     <segue destination="mc9-3u-DTs" kind="modal" identifier="Play game" id="VK9-CU-oJE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doodle Jump" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pOg-gt-vqC">
-                                <rect key="frame" x="-4" y="189" width="328" height="51"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="60W-Xd-vZ7">
+                                <rect key="frame" x="0.0" y="78" width="320" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="47"/>
-                                <color key="textColor" red="0.40783405546859741" green="0.86336016414141414" blue="0.29127570307647532" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="highlightedColor" red="0.33939689042417742" green="1" blue="0.8402163964153353" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="29"/>
+                                <color key="textColor" red="0.12033066040342422" green="1" blue="0.6056668065788039" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="H3h-W5-V4Q">
+                                <rect key="frame" x="205" y="515" width="115" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="18"/>
+                                <state key="normal" title="Reset score">
+                                    <color key="titleColor" red="1" green="0.67782559164067269" blue="0.45734466141033392" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetScoreButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ILB-tF-U02"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.096469959676256684" green="0.3028724747474747" blue="0.16569246815157276" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="48L-lm-arD"/>
+                    <connections>
+                        <outlet property="highScoreLabel" destination="60W-Xd-vZ7" id="7NT-JC-qxj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,38 +83,49 @@
                                 <rect key="frame" x="145" y="269" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XVk-OK-chC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="31"/>
-                                <color key="textColor" red="0.1503228331274834" green="1" blue="0.50685337111306761" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Platform.png" id="oua-fz-ofj">
                                 <rect key="frame" x="121" y="554" width="79" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Platform.png" id="md2-TN-35l">
+                                <rect key="frame" x="225" y="426" width="79" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Platform.png" id="ITk-Jc-mol">
-                                <rect key="frame" x="16" y="333" width="79" height="14"/>
+                                <rect key="frame" x="16" y="323" width="79" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Platform.png" id="TfV-oB-rOX">
-                                <rect key="frame" x="232" y="200" width="79" height="14"/>
+                                <rect key="frame" x="145" y="178" width="79" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Platform.png" id="Mmr-Cg-Oqy">
-                                <rect key="frame" x="16" y="99" width="79" height="14"/>
+                                <rect key="frame" x="11" y="79" width="79" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Platform.png" id="md2-TN-35l">
-                                <rect key="frame" x="225" y="423" width="79" height="14"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9LP-Yh-XYr">
+                                <rect key="frame" x="-67" y="206" width="455" height="155"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <state key="normal" image="gameover-78871.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="modal" identifier="game over" id="be3-gX-mlq"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XVk-OK-chC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="31"/>
+                                <color key="textColor" red="0.18937715949063771" green="1" blue="0.24698575648589538" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="ball" destination="akJ-BH-nbH" id="A0C-iQ-cVi"/>
+                        <outlet property="gameOverButton" destination="9LP-Yh-XYr" id="Kmr-tl-fb4"/>
                         <outlet property="platform1" destination="oua-fz-ofj" id="2VQ-m2-TbU"/>
                         <outlet property="platform2" destination="md2-TN-35l" id="duU-OQ-Gq9"/>
                         <outlet property="platform3" destination="ITk-Jc-mol" id="vtd-Vb-LmG"/>
@@ -110,6 +144,7 @@
         <image name="Ball1.png" width="34" height="35"/>
         <image name="Platform.png" width="58" height="18"/>
         <image name="another-green-start-button-md.png" width="300" height="300"/>
+        <image name="gameover-78871.png" width="400" height="155"/>
         <image name="play-game.png" width="263" height="66"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
